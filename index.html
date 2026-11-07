@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warung Seblak Yellow — Enak & Merakyat</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ================= BASE STYLES ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #121110;
+            color: #f3f3f3;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* ================= HEADER & NAV ================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 6%;
+            background: rgba(22, 20, 18, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .logo span {
+            color: #ffb703;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #ffb703;
+        }
+
+        .btn-admin {
+            background: rgba(255, 183, 3, 0.15);
+            border: 1px solid #ffb703;
+            color: #ffb703;
+            padding: 7px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .btn-admin:hover {
+            background: #ffb703;
+            color: #111;
+        }
+
+        /* ================= HERO SECTION ================= */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+            background: linear-gradient(rgba(18,17,16,0.85), rgba(18,17,16,0.95)), url("hero.jpg") center/cover;
+        }
+
+        .hero-content {
+            max-width: 750px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(255, 183, 3, 0.15);
+            border: 1px solid rgba(255, 183, 3, 0.4);
+            border-radius: 30px;
+            color: #ffb703;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .hero h1 span {
+            color: #ffb703;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #bbb;
+            max-width: 620px;
+            margin: 0 auto 25px;
+        }
+
+        /* BANNER INFO PENGIRIMAN SEDERHANA */
+        .delivery-note {
+            background: rgba(255, 183, 3, 0.1);
+            border-left: 4px solid #ffb703;
+            padding: 14px 20px;
+            border-radius: 8px;
+            text-align: left;
+            margin: 0 auto 30px;
+            max-width: 580px;
+            font-size: 13px;
+            color: #ddd;
+        }
+
+        .delivery-note strong {
+            color: #ffb703;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 26px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: .3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #ffb703;
+            color: #111;
+        }
+
+        .btn-primary:hover {
+            background: #e0a100;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid #555;
+            color: #eee;
+        }
+
+        .btn-outline:hover {
+            border-color: #ffb703;
+            color: #ffb703;
+        }
+
+        /* ================= SECTIONS ================= */
+        section {
+            padding: 80px 6%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title small {
+            color: #ffb703;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-top: 8px;
+            color: #fff;
+        }
+
+        .section-title p {
+            color: #aaa;
+            max-width: 550px;
+            margin: 10px auto 0;
+            font-size: 14px;
+        }
+
+        /* ================= FOOD GRID ================= */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .food-card {
+            background: #1c1a18;
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: .3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 183, 3, 0.4);
+        }
+
+        .food-image {
+            position: relative;
+            aspect-ratio: 16/10;
+            background: #262422;
+        }
+
+        .food-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .zoom {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+            z-index: 2;
+            font-size: 14px;
+        }
+
+        .food-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .food-content h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .food-content p {
+            color: #999;
+            font-size: 13px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .price {
+            color: #ffb703;
+            font-weight: 800;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        .btn-delete {
+            margin-top: 12px;
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+            padding: 6px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            width: 100%;
+        }
+
+        /* ================= LOKASI WARUNG ================= */
+        .location-section {
+            background: #181614;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+
+        .location-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #211e1b;
+            padding: 35px 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .location-box h3 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .location-box p {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .btn-location {
+            background: #2a9d8f;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-location:hover {
+            background: #238579;
+            transform: translateY(-2px);
+        }
+
+        /* ================= ABOUT ================= */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .about-text h2 {
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .about-text p {
+            color: #aaa;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* ================= KONTAK & PEMESANAN ================= */
+        .contact {
+            text-align: center;
+        }
+
+        .contact-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #1c1a18;
+            padding: 40px 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 183, 3, 0.3);
+        }
+
+        .contact-card h2 {
+            font-size: 30px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .contact-card .info-text {
+            color: #bbb;
+            font-size: 14px;
+            margin-bottom: 20px;
+            text-align: left;
+            background: #121110;
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 3px solid #ffb703;
+        }
+
+        .contact-card .info-text ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .phone-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            border-radius: 30px;
+            background: #ffb703;
+            color: #111;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 15px;
+            transition: .3s;
+        }
+
+        .phone-btn:hover {
+            background: #e0a100;
+            transform: scale(1.03);
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            padding: 30px 6%;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+        }
+
+        footer span {
+            color: #ffb703;
+        }
+
+        /* ================= MODAL & LIGHTBOX ================= */
+        .modal, .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: rgba(0, 0, 0, .85);
+            backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active, .lightbox.active {
+            display: flex !important;
+        }
+
+        .modal-box {
+            background: #211e1b;
+            border: 1px solid rgba(255, 183, 3, 0.4);
+            border-radius: 18px;
+            padding: 25px;
+            width: 100%;
+            max-width: 440px;
+            position: relative;
+        }
+
+        .modal-box h3 {
+            font-size: 22px;
+            color: #ffb703;
+            margin-bottom: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: #ccc;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            background: #121110;
+            border: 1px solid #383430;
+            border-radius: 8px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #ffb703;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 12px;
+            background: #ffb703;
+            color: #111;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .form-submit:hover {
+            background: #e0a100;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            font-size: 22px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .close-modal:hover {
+            color: #fff;
+        }
+
+        .lightbox img {
+            max-width: 95%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            font-size: 35px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 700px) {
+            header {
+                padding: 14px 4%;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            section {
+                padding: 60px 4%;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header>
+        <div class="logo">
+            SEBLAK <span>YELLOW</span>
+        </div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#location">Lokasi</a>
+            <a href="#contact">Pesan</a>
+            <button class="btn-admin" id="adminBtn" type="button" onclick="openAdminModal(event)">+ Tambah Menu</button>
+        </nav>
+    </header>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="badge">WARUNG SEBLAK PINGGIR JALAN</div>
+            <h1>Nikmat, Kenyang, <span>Harganya Pas!</span></h1>
+            <p>
+                Sajian seblak dan masakan sederhana khas warung pinggir jalan. Rasa gurih pedas mantap dan ramah di kantong.
+            </p>
+
+            <!-- PEMBERITAHUAN PENGIRIMAN -->
+            <div class="delivery-note">
+                📌 <strong>Catatan Pengiriman:</strong> Kasihan warung kecil kami jika kirim terlalu jauh, <strong>kami cuma melayani antar makanan khusus area antar desa / desa sebelah saja</strong>. Bayar langsung di tempat (COD) pas makanan sampai!
+            </div>
+
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">Lihat Daftar Menu</a>
+                <a href="#location" class="btn btn-outline">📍 Cek Lokasi Warung</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= MENU ================= -->
+    <section id="menu">
+        <div class="section-title">
+            <small>SAJIAN KAMI</small>
+            <h2>Menu Masakan</h2>
+            <p>Berbagai pilihan menu enak dengan porsi pas dan harga terjangkau.</p>
+        </div>
+
+        <div class="food-grid" id="foodGrid">
+            <!-- Data menu akan dimuat secara dinamis via JavaScript -->
+        </div>
+    </section>
+
+    <!-- ================= LOKASI WARUNG ================= -->
+    <section class="location-section" id="location">
+        <div class="location-box">
+            <h3>📍 Lokasi Warung Seblak Yellow</h3>
+            <p>Mau mampir makan langsung di tempat atau ambil sendiri pesanan Anda? Silakan cek petunjuk arah Google Maps kami di bawah ini:</p>
+            
+            <a href="https://goo.gl/maps/d9SNUKXfDMxdhnuz9?g_st=ac" target="_blank" class="btn-location">
+                🗺️ Buka Petunjuk Lokasi (Google Maps)
+            </a>
+        </div>
+    </section>
+
+    <!-- ================= TENTANG WARUNG ================= -->
+    <section id="about">
+        <div class="about">
+            <div class="about-image">
+                <img src="toko.jpg" alt="Warung Seblak Yellow" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400/211e1b/ffffff?text=Seblak+Yellow';">
+            </div>
+            <div class="about-text">
+                <h2>Warung Sederhana, Rasa Istimewa</h2>
+                <p>
+                    Kami adalah warung seblak pinggir jalan biasa yang mengutamakan kebersihan, rasa gurih pedas nikmat, dan harga yang bersahabat untuk siapa saja.
+                </p>
+                <p>
+                    Cocok untuk makan siang, makan malam, atau sekadar pengganjal perut saat santai bersama kawan dan keluarga.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= KONTAK & PANDUAN PENGIRIMAN ================= -->
+    <section class="contact" id="contact">
+        <div class="contact-card">
+            <h2>Pemesanan & Tanya Jawab</h2>
+            
+            <div class="info-text">
+                <strong>Ketentuan Saat Hubungi Kami:</strong>
+                <ul>
+                    <li>Nomor kontak ini khusus untuk <strong>bertanya seputar menu dan harga</strong>.</li>
+                  
+                    <li>Pesan antar makanan <strong>hanya berlaku untuk jarak dekat (antar desa sebelah)</strong>.</li>
+                </ul>
+            </div>
+
+            <a href="https://wa.me/6281234567890?text=Halo%20Seblak%20Yellow,%20mau%20tanya%20menu%20dan%20harga" target="_blank" class="phone-btn">
+                📞 Hubungi via WhatsApp / Telp
+            </a>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        © 2026 <span>Seblak Yellow</span> — Pinggir Jalan, Rasa Mantap.
+    </footer>
+
+    <!-- ================= MODAL TAMBAH MENU ================= -->
+    <div class="modal" id="addMenuModal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeAddMenuModal()">&times;</span>
+            <h3>Tambah Menu Warung</h3>
+            <form id="addMenuForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label>Nama Makanan / Minuman</label>
+                    <input type="text" id="foodName" placeholder="Contoh: Seblak Prasmanan" required>
+                </div>
+                <div class="form-group">
+                    <label>Deskripsi Singkat</label>
+                    <textarea id="foodDesc" rows="3" placeholder="Contoh: Bebas pilih topping..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Harga</label>
+                    <input type="text" id="foodPrice" placeholder="Contoh: 5.000" required>
+                </div>
+                <div class="form-group">
+                    <label>Nama File Foto di Folder (Contoh: seblakprasmanan.jpg)</label>
+                    <input type="text" id="foodFileName" placeholder="Contoh: seblakprasmanan.jpg" required>
+                </div>
+                <button type="submit" class="form-submit" id="submitBtn">Simpan & Tampilkan</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= LIGHTBOX ================= -->
+    <div class="lightbox" id="lightbox" onclick="closeImage()">
+        <div class="close">&times;</div>
+        <img id="lightboxImage" src="" alt="Preview Makanan">
+    </div>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        const ADMIN_PASS = "889845";
+        let isAdminLoggedIn = false;
+
+        // 11 Menu Utama Lengkap Berdasarkan Folder
+        const defaultMenus = [
+            { id: 1, name: "SEBLAK PRASMANAN", desc: "Seblak prasmanan gurih pedas, bebas pilih topping sesuai selera.", price: "Harga Tergantung Pilihan", image: "seblakprasmanan.jpg" },
+            { id: 2, name: "MIE GACOR", desc: "Mie pedas gurih khas warung dengan bumbu racikan mantap.", price: "Rp 5.000", image: "miegacor.jpg" },
+            { id: 3, name: "AYAM GEPREK", desc: "Ayam goreng renyah digeprek dengan sambal cabai asli.", price: "Rp 5.000", image: "ayamgeprek.jpg" },
+            { id: 4, name: "BASRENG", desc: "Bakso goreng renyah bumbu tabur pedas gurih nagih.", price: "Rp 5.000", image: "basreng.jpg" },
+            { id: 5, name: "CEKER MERCON", desc: "Ceker empuk dimasak dengan bumbu balado pedas mercon.", price: "Rp 5.000", image: "cekermercon.jpg" },
+            { id: 6, name: "DIMSUM", desc: "Dimsum olahan ayam lezat dan kenyal disajikan hangat.", price: "Rp 5.000", image: "dimsum.jpg" },
+            { id: 7, name: "LUMPIA", desc: "Lumpia goreng isi lezat renyah di luar gurih di dalam.", price: "Rp 5.000", image: "lumpia.jpg" },
+            { id: 8, name: "MIE TEK TEK", desc: "Mie tek-tek tumis khas warung nikmat kaya bumbu.", price: "Rp 5.000", image: "mietektek.jpg" },
+            { id: 9, name: "PISCOK", desc: "Pisang cokelat lumer manis crispy berpadu sempurna.", price: "Rp 5.000", image: "piscok.jpg" },
+            { id: 10, name: "JUS SEGAR", desc: "Jus buah segar dingin penghilang dahaga.", price: "Rp 5.000", image: "jus.jpg" },
+            { id: 11, name: "POP ICE", desc: "Es minuman blended Pop Ice aneka rasa favorit.", price: "Rp 3.000", image: "popice.jpg" }
+        ];
+
+        function getMenus() {
+            const saved = localStorage.getItem('seblakyellow_menus_v8');
+            if (!saved) {
+                localStorage.setItem('seblakyellow_menus_v8', JSON.stringify(defaultMenus));
+                return defaultMenus;
+            }
+            try {
+                return JSON.parse(saved);
+            } catch (e) {
+                return defaultMenus;
+            }
+        }
+
+        function saveMenus(menus) {
+            try {
+                localStorage.setItem('seblakyellow_menus_v8', JSON.stringify(menus));
+                return true;
+            } catch (err) {
+                return false;
+            }
+        }
+
+        // Anti-Bug Gambar: Cek otomatis huruf besar/kecil ekstensi file di folder
+        function handleImageFallback(imgElement, originalSrc, name) {
+            let src = imgElement.getAttribute('src');
+            if (!imgElement.dataset.retried) {
+                imgElement.dataset.retried = "true";
+                if (src.endsWith('.jpg')) {
+                    imgElement.src = src.replace('.jpg', '.JPG');
+                    return;
+                } else if (src.endsWith('.JPG')) {
+                    imgElement.src = src.replace('.JPG', '.jpg');
+                    return;
+                } else if (src.endsWith('.png')) {
+                    imgElement.src = src.replace('.png', '.PNG');
+                    return;
+                }
+            }
+            imgElement.src = 'https://via.placeholder.com/400x250/211e1b/ffb703?text=' + encodeURIComponent(name);
+        }
+
+        function renderMenus() {
+            const foodGrid = document.getElementById('foodGrid');
+            const menus = getMenus();
+            foodGrid.innerHTML = '';
+
+            menus.forEach(menu => {
+                const card = document.createElement('div');
+                card.className = 'food-card';
+                card.innerHTML = `
+                    <div class="food-image">
+                        <img src="${menu.image}" alt="${menu.name}" onerror="handleImageFallback(this, '${menu.image}', '${menu.name}')">
+                        <div class="zoom" onclick="openImage('${menu.image}')">⛶</div>
+                    </div>
+                    <div class="food-content">
+                        <h3>${menu.name}</h3>
+                        <p>${menu.desc}</p>
+                        <div class="price">${menu.price}</div>
+                        ${isAdminLoggedIn ? `<button class="btn-delete" type="button" onclick="deleteMenu(${menu.id})">Hapus Menu</button>` : ''}
+                    </div>
+                `;
+                foodGrid.appendChild(card);
+            });
+        }
+
+        function openAdminModal(e) {
+            e.preventDefault();
+            if (!isAdminLoggedIn) {
+                const inputPass = prompt("Masukkan Kata Sandi Admin:");
+                if (inputPass === ADMIN_PASS) {
+                    isAdminLoggedIn = true;
+                    alert("Akses Admin Aktif!");
+                    document.getElementById('adminBtn').innerText = "+ Tambah Menu (Active)";
+                    document.getElementById('addMenuModal').classList.add('active');
+                    renderMenus();
+                } else if (inputPass !== null) {
+                    alert("Kata sandi salah!");
+                }
+            } else {
+                document.getElementById('addMenuModal').classList.add('active');
+            }
+        }
+
+        function closeAddMenuModal() {
+            document.getElementById('addMenuModal').classList.remove('active');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('foodName').value;
+            const desc = document.getElementById('foodDesc').value;
+            const price = document.getElementById('foodPrice').value;
+            const fileNameInput = document.getElementById('foodFileName').value.trim();
+
+            if (!fileNameInput) {
+                alert("Masukkan nama file foto dengan benar!");
+                return;
+            }
+
+            let menus = getMenus();
+            const newMenu = {
+                id: Date.now(),
+                name: name.toUpperCase(),
+                desc: desc,
+                price: price.toLowerCase().includes('rp') || price.toLowerCase().includes('harga') ? price : 'Rp ' + price,
+                image: fileNameInput
+            };
+
+            menus.push(newMenu);
+            saveMenus(menus);
+
+            renderMenus();
+            document.getElementById('addMenuForm').reset();
+            closeAddMenuModal();
+            alert("Menu baru berhasil ditambahkan!");
+        }
+
+        function deleteMenu(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus menu ini?")) {
+                let menus = getMenus();
+                menus = menus.filter(item => item.id !== id);
+                saveMenus(menus);
+                renderMenus();
+            }
+        }
+
+        function openImage(src) {
+            document.getElementById("lightboxImage").src = src;
+            document.getElementById("lightbox").classList.add("active");
+        }
+
+        function closeImage() {
+            document.getElementById("lightbox").classList.remove("active");
+        }
+
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") {
+                closeImage();
+                closeAddMenuModal();
+            }
+        });
+
+        renderMenus();
+    </script>
+</body>
+</html>
